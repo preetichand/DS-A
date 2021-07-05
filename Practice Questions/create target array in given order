@@ -1,0 +1,21 @@
+class Solution {
+public:
+    vector<int> createTargetArray(vector<int>& nums, vector<int>& index) {
+        int n=nums.size();
+        vector<int>res(n,-1);
+        for(int i=0;i<n;i++){
+            if(res[index[i]]==-1)
+                res[index[i]]=nums[i];
+            
+            else{
+                int k=index[i],j=n-2;
+                while(j>=k){
+                    res[j+1]=res[j];
+                    j--;
+                }
+                res[j+1]=nums[i];
+            }
+        }
+        return res;
+    }
+};
