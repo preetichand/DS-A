@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
+        set<pair<int,int>>s;
+        vector<int>result;
+        
+        for(int i=0;i<mat.size();i++){
+            int index=binary_search(mat[i]);
+            s.insert({index,i});
+        }
+        for(auto itr:s){
+            if(k){
+                result.push_back(itr.second);
+                k--;
+            }
+        }
+        return result;
+    }
+    
+    int binary_search(vector<int>v){
+        int low=0,high=v.size()-1,mid;
+        while(low<=high){
+            mid=low+(high-low)/2;
+            if(v[mid]==1)
+                low=mid+1;
+            else
+                high=mid-1;
+        }
+        return low;
+      
+        
+    }
+};
