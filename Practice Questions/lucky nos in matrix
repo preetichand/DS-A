@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+        vector<int>res;
+        unordered_set<int>col_set;
+        
+        for(int j=0;j<matrix[0].size();j++){
+            int max_num=INT_MIN;
+            for(int i=0;i<matrix.size();i++){
+                max_num=max(max_num,matrix[i][j]);
+            }
+            col_set.insert(max_num);
+        }
+        
+        for(int i=0;i<matrix.size();i++){
+             int min_el=INT_MAX;
+            for(int j=0;j<matrix[0].size();j++){
+                min_el=min(min_el,matrix[i][j]);
+            }
+            if(col_set.count(min_el))
+                res.push_back(min_el);
+        }
+        
+        return res;
+    }
+};
